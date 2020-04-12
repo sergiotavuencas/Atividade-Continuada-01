@@ -13,8 +13,23 @@ public class EmployeeService {
     @Autowired
     EmployeeRepository employeeRepository;
 
-    public void createEmployee(Employee employee) {
+    public Employee createEmployee(String name, String role, double salary) {
+        Employee employee = new Employee();
+        Employee aux = null;
+
+        employee.setName(name.toUpperCase());
+        employee.setRole(role.toUpperCase());
+        employee.setSalary(salary);
+
         employeeRepository.save(employee);
+
+        for(Employee emp : employeeRepository.findAll())
+        {
+            if(emp.equals(employee))
+                aux = emp;
+        }
+
+        return aux;
     }
 
     public List<Employee> getAllEmployees(){
