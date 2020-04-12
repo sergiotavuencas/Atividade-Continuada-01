@@ -27,6 +27,7 @@ public class EmployeeController {
         employee = employeeService.createEmployee(employee.getName(), employee.getRole(), employee.getSalary());
 
         if(employee != null) {
+            mv.setViewName("allEmployees");
             mv.addObject("employees", employeeService.getAllEmployees());
         } else {
             mv.setViewName("registrationError");

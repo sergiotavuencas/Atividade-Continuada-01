@@ -7,6 +7,7 @@
     <title>All Employees</title>
 </head>
 <body>
+    <h1>Registered Employees</h1>
     <table>
         <tr th:each="employee : ${employees}">
             <td th:text="${employee.name}"></td>
