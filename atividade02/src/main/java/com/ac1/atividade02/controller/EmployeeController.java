@@ -9,37 +9,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class EmployeeController {
+    
     @Autowired
-    EmployeeService employeeService;
-
-    @GetMapping("/register")
-    public String register() {
-        return "registerEmployee";
-    }
-
-    @PostMapping("/register")
-    public ModelAndView registerForm(@ModelAttribute Employee employee) {
-        ModelAndView mv = new ModelAndView();
-
-        employee = employeeService.createEmployee(employee.getName(), employee.getRole(), employee.getSalary());
-
-        if(employee != null) {
-            mv.setViewName("allEmployees");
-            mv.addObject("employees", employeeService.getAllEmployees());
-        } else {
-            mv.setViewName("registrationError");
-        }
-
-        return mv;
-    }
+    private EmployeeService employeeService;
 
     @GetMapping("/allEmployees")
     public ModelAndView getAllEmployees() {
-        ModelAndView mv = new ModelAndView("allEmployees");
+        ModelAndView mv = new ModelAndView("employeeTemplate");
         mv.addObject("employees", employeeService.getAllEmployees());
         return mv;
+    }
+
+    @PostMapping("/register")
+    public String register(@ModelAttribute Employee employee) {
+        employeeService.createEmployee(employee);
+        return "redirect:/allEmployees";
     }
 }

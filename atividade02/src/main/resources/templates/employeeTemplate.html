@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Employees</title>
+</head>
+<body>
+    <form th:action="@{/register}" method="POST">
+        <h1>Registration</h1>
+        <input type="text"      name="name" />
+        <input type="text"      name="role" />
+        <input type="number"    name="salary" />
+        <!--<input type="date"      name="admission" />-->
+        <input type="submit"    value="Register" />
+    </form>
+    <table>
+        <h1>Registered Employees</h1>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.name}">         </td>
+            <td th:text="${employee.role}">         </td>
+            <td th:text="${employee.salary}">       </td>
+            <td tx:text="${employee.admission}">    </td>
+        </tr>
+    </table>
+</body>
+</html>
