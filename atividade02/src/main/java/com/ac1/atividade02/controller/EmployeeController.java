@@ -8,26 +8,37 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
+@RequestMapping("/employee")
 public class EmployeeController {
     
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/allEmployees")
+    @GetMapping("/home")
+    public String employeeHome() {
+        return "employeeHome";
+    }
+
+    @GetMapping("/all")
     public ModelAndView getAllEmployees() {
-        ModelAndView mv = new ModelAndView("employeeTemplate");
+        ModelAndView mv = new ModelAndView("registeredEmployees");
         mv.addObject("employees", employeeService.getAllEmployees());
         return mv;
     }
 
+    @GetMapping("/register")
+    public String registerForm() {
+        return "registerEmployee";
+    }
+
     @PostMapping("/register")
-    public String register(@ModelAttribute Employee employee) {
+    public String saveEmployee(@ModelAttribute Employee employee) {
         employeeService.createEmployee(employee);
-        return "redirect:/allEmployees";
+        return "redirect:/employee/all";
     }
 }

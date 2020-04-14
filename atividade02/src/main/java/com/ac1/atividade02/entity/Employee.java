@@ -19,7 +19,7 @@ public class Employee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id_employee;
+    private int id;
 
     @Column(name = "name", nullable = false, length = 80)
     private String name;
@@ -33,12 +33,12 @@ public class Employee implements Serializable {
     //@Column(name = "admission", nullable = true, length = 80)
     private Date admission;
 
-    public Integer getId_employee() {
-        return id_employee;
+    public int getId() {
+        return id;
     }
 
-    public void setId_employee(Integer id_employee) {
-        this.id_employee = id_employee;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -75,7 +75,7 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "Employee [id_employee=" + id_employee + ", admission="  + admission + ", name=" + name + ", role=" + role
+        return "Employee [id=" + id + ", admission="  + admission + ", name=" + name + ", role=" + role
                 + ", salary=" + salary + "]";
     }
     
