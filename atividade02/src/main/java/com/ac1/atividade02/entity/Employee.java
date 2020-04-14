@@ -3,6 +3,7 @@ package com.ac1.atividade02.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,12 +21,16 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id_employee;
 
+    @Column(name = "name", nullable = false, length = 80)
     private String name;
 
+    @Column(name = "role", nullable = false, length = 40)
     private String role;
 
+    @Column(name = "salary", nullable = false, precision = 10, scale = 2)
     private double salary;
 
+    //@Column(name = "admission", nullable = true, length = 80)
     private Date admission;
 
     public Integer getId_employee() {
