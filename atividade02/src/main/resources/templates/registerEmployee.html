@@ -7,24 +7,38 @@
 </head>
 <body>
     <div align="center">
-        <form th:action="@{/employee/register}" method="POST">
-            <h1>Registration</h1>
+        <form action="#" th:action="@{/employee/register}" th:object="${employee}" method="POST">
+            <table>
+                <h1>Registration</h1>
+
+                <tr>
+                    <td>Name: </td>
+                    <td><input type="text" th:field="*{name}" /></td>
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                    <p></p>
+                </tr>
+                <tr>
+                    <td>Graduation: </td>
+                    <td><input type="text" th:field="*{graduation}" /></td>
+                    <td th:if="${#fields.hasErrors('graduation')}" th:errors="*{graduation}">Graduation Error</td>
+                    <p></p>
+                </tr>
+                <tr>
+                    <td>Role: </td>
+                    <td><input type="text" th:field="*{role}" /></td>
+                    <td th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Role Error</td>
+                    <p></p>
+                </tr>
+                <tr>
+                    <td>Salary: </td>
+                    <td><input type="number" th:field="*{salary}" /></td>
+                    <td th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">Salary Error</td>
+                    <p></p>
+                </tr>
+            </table>
             <div>
-                <label>Name</label>
-                <input type="text" name="name" />
-                <p></p>
+                <input type="submit" value="Register" />
             </div>
-            <div>
-                <label>Role</label>
-                <input type="text" name="role" />
-                <p></p>
-            </div>
-            <div>
-                <label>Salary</label>
-                <input type="number" name="salary" />
-                <p></p>
-            </div>
-            <input type="submit"    value="Register" />
         </form>
 
         <p></p>
